@@ -33,6 +33,7 @@ angular.module('ui-notification').provider('Notification', function() {
 
     this.$get = ["$timeout", "$http", "$compile", "$templateCache", "$rootScope", "$injector", "$sce", "$q", "$window", function($timeout, $http, $compile, $templateCache, $rootScope, $injector, $sce, $q, $window) {
         var options = this.options;
+        var self = this;
 
         var startTop = options.startTop;
         var startRight = options.startRight;
@@ -137,7 +138,7 @@ angular.module('ui-notification').provider('Notification', function() {
 
                         lastPosition[element._positionY+element._positionX] = top + elHeight;
 
-                        if (options.maxCount > 0 && messageElements.length > options.maxCount && i === 0) {
+                        if (self.options.maxCount > 0 && messageElements.length > self.options.maxCount && i === 0) {
                             element.scope().kill(true);
                         }
 

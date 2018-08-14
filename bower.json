@@ -1,13 +1,13 @@
 {
-  "name": "angular-ui-notification",
-  "version": "0.3.6",
-  "homepage": "https://github.com/alexcrack/angular-ui-notification",
+  "name": "angular-ui-notification-lavr",
+  "version": "0.3.7",
+  "homepage": "https://github.com/n-lavrenko/angular-ui-notification",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jermorin/angular-ui-notification"
+    "url": "git://github.com/n-lavrenko/angular-ui-notification"
   },
   "authors": [
-    "Alexey Avramchik"
+    "Nikita Lavrenko"
   ],
   "description": "Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating",
   "main": [
