@@ -1,5 +1,5 @@
 {
-  "name": "angular-ui-notification",
+  "name": "angular-ui-notification-lavr",
   "version": "0.3.7",
   "description": "Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating",
   "main": "index.js",
