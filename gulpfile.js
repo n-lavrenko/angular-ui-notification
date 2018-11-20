@@ -45,20 +45,6 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('demo'));
 });
 
-// ====== Templates
-gulp.task('templates', function() {
-    gulp.src(['*.html'], {cwd: 'src'})
-        .pipe(minifyHtml({
-            empty: true,
-            spare: true,
-            quotes: true
-        }))
-        .pipe(templateCache({
-            module: 'ui-notification'
-        }))
-        .pipe(rename('angular-ui-notification.templates.js'))
-        .pipe(gulp.dest("build"));
-});
 
 gulp.task('service', function() {
     gulp.src(['src/*.js'])
@@ -67,10 +53,6 @@ gulp.task('service', function() {
         .pipe(jshint.reporter('fail'))
         .pipe(ngAnnotate())
         .pipe(addsrc('build/*.js'))
-        .pipe(order([
-            'src/*.js',
-            'build/angular-ui-notification.templates.js'
-        ]))
         .pipe(concat('angular-ui-notification.js'))
 
         .pipe(header(banner, { pkg : pkg }))
@@ -95,7 +77,7 @@ gulp.task('e2eTest', function() {
 });
 
 gulp.task('tests', ['e2eTest']);
-gulp.task('build', ['templates', 'service', 'styles']);
+gulp.task('build', ['service', 'styles']);
 gulp.task('deploy', ['build', 'tests']);
 
 gulp.task('default', ['deploy'], function() {});

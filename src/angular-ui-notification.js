@@ -1,3 +1,10 @@
+/**
+ * angular-ui-notification-lavr - Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating
+ * @author Alex_Crack > Nikita Lavrenko
+ * @version v0.3.7
+ * @link https://github.com/n-lavrenko/angular-ui-notification
+ * @license MIT
+ */
 angular.module('ui-notification', []);
 
 angular.module('ui-notification').provider('Notification', function () {
@@ -26,7 +33,7 @@ angular.module('ui-notification').provider('Notification', function () {
     this.options = angular.extend({}, this.options, options);
   };
   
-  this.$get = function ($timeout, $http, $compile, $templateCache, $rootScope, $injector, $sce, $q, $window) {
+  this.$get = ["$timeout", "$http", "$compile", "$templateCache", "$rootScope", "$injector", "$sce", "$q", "$window", function ($timeout, $http, $compile, $templateCache, $rootScope, $injector, $sce, $q, $window) {
     var options = this.options;
     var self = this;
     
@@ -58,31 +65,13 @@ angular.module('ui-notification').provider('Notification', function () {
       args.container = args.container ? args.container : options.container;
       args.priority = args.priority ? args.priority : options.priority;
       
-      var template;
       
-      try {
-        template = require('./angular-ui-notification.html');
-        // do stuff
-      } catch (ex) {}
+      var template = '<div class="ui-notification">' +
+                          '<h3 ng-show="title" ng-bind-html="title"></h3>' +
+                          '<div class="message" ng-bind-html="message"></div>' +
+                      '</div>';
       
-      if (!template) {
-        template = $templateCache.get(args.template);
-      }
-      
-      if (template) {
-        processNotificationTemplate(template);
-      }
-      else {
-        // load it via $http only if it isn't default template and template isn't exist in template cache
-        // cache:true means cache it for later access.
-        $http.get(args.template, { cache: true })
-          .then(function (response) {
-            processNotificationTemplate(response.data);
-          })
-          .catch(function (data) {
-            throw new Error('Template (' + args.template + ') could not be loaded. ' + data);
-          });
-      }
+      processNotificationTemplate(template);
       
       function processNotificationTemplate(template) {
         
@@ -264,5 +253,5 @@ angular.module('ui-notification').provider('Notification', function () {
     };
     
     return notify;
-  };
+  }];
 });
