@@ -28,11 +28,13 @@ bower install angular-ui-notification --save
 
 To install via NPM:
 ```bash
-npm install angular-ui-notification --save
+npm install angular-ui-notification-lavr --save
 ```
 
 ## Usage
  [Heres a plunker demo](http://plnkr.co/edit/h08qQF2qlVE3arERpdfi?p=preview)
+ 
+Working with `require`!
 
   
 In your html/template add 
