@@ -18,6 +18,7 @@ angular.module('ui-notification').provider('Notification', function () {
     positionX: 'right',
     positionY: 'top',
     replaceMessage: false,
+    template: null,
     templateUrl: 'angular-ui-notification.html',
     onClose: undefined,
     closeOnClick: true,
@@ -54,7 +55,6 @@ angular.module('ui-notification').provider('Notification', function () {
       }
       
       args.scope = args.scope ? args.scope : $rootScope;
-      args.template = args.templateUrl ? args.templateUrl : options.templateUrl;
       args.delay = !angular.isUndefined(args.delay) ? args.delay : delay;
       args.type = t || args.type || options.type || '';
       args.positionY = args.positionY ? args.positionY : options.positionY;
@@ -70,8 +70,10 @@ angular.module('ui-notification').provider('Notification', function () {
                           '<h3 ng-show="title" ng-bind-html="title"></h3>' +
                           '<div class="message" ng-bind-html="message"></div>' +
                       '</div>';
+  
+      args.template = args.template ? args.template : template;
       
-      processNotificationTemplate(template);
+      processNotificationTemplate(args.template);
       
       function processNotificationTemplate(template) {
         
