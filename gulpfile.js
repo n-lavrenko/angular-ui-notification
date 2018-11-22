@@ -7,11 +7,11 @@ var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var header = require('gulp-header');
-var templateCache = require('gulp-angular-templatecache');
-var minifyHtml = require("gulp-minify-html");
+// var templateCache = require('gulp-angular-templatecache');
+// var minifyHtml = require("gulp-minify-html");
 var concat = require('gulp-concat');
 var addsrc = require('gulp-add-src');
-var order = require("gulp-order");
+// var order = require("gulp-order");
 var protractor = require("gulp-protractor").protractor;
 
 var pkg = require('./package.json');
@@ -52,17 +52,7 @@ gulp.task('service', function() {
         .pipe(jshint.reporter('default'))
         .pipe(jshint.reporter('fail'))
         .pipe(ngAnnotate())
-        .pipe(addsrc('build/*.js'))
-        .pipe(concat('angular-ui-notification.js'))
-
-        .pipe(header(banner, { pkg : pkg }))
-        .pipe(gulp.dest('dist'))
-
-        .pipe(uglify())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(header(banner, { pkg : pkg }))
+        // .pipe(header(banner, { pkg : pkg }))
         .pipe(gulp.dest('dist'))
         .pipe(gulp.dest('demo'));
 });
