@@ -1,11 +1,11 @@
 /**
  * angular-ui-notification-lavr - Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating
  * @author Alex_Crack > Nikita Lavrenko
- * @version v0.4.0
+ * @version v0.6.0
  * @link https://github.com/n-lavrenko/angular-ui-notification
  * @license MIT
  */
-
+angular.module("ui-notification").run(["$templateCache", function($templateCache) {$templateCache.put("angular-ui-notification.html","<div class=\"ui-notification\"><h3 ng-show=\"title\" ng-bind-html=\"title\"></h3><div class=\"message\" ng-bind-html=\"message\"></div></div>");}]);
 /**
  * angular-ui-notification-lavr - Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating
  * @author Alex_Crack > Nikita Lavrenko
@@ -26,6 +26,7 @@ angular.module('ui-notification').provider('Notification', function () {
     positionX: 'right',
     positionY: 'top',
     replaceMessage: false,
+    template: null,
     templateUrl: 'angular-ui-notification.html',
     onClose: undefined,
     closeOnClick: true,
@@ -62,7 +63,6 @@ angular.module('ui-notification').provider('Notification', function () {
       }
       
       args.scope = args.scope ? args.scope : $rootScope;
-      args.template = args.templateUrl ? args.templateUrl : options.templateUrl;
       args.delay = !angular.isUndefined(args.delay) ? args.delay : delay;
       args.type = t || args.type || options.type || '';
       args.positionY = args.positionY ? args.positionY : options.positionY;
@@ -78,8 +78,10 @@ angular.module('ui-notification').provider('Notification', function () {
                           '<h3 ng-show="title" ng-bind-html="title"></h3>' +
                           '<div class="message" ng-bind-html="message"></div>' +
                       '</div>';
+  
+      args.template = args.template ? args.template : template;
       
-      processNotificationTemplate(template);
+      processNotificationTemplate(args.template);
       
       function processNotificationTemplate(template) {
         
